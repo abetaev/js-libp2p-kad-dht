@@ -92,11 +92,11 @@ describe('rpc', () => {
       }
     }
 
-    await rpc.onIncomingStream({
+    rpc.onIncomingStream({
       stream: mockStream(duplexStream),
-      connection: await mockConnection(mockMultiaddrConnection(duplexStream, otherPeerId))
+      connection: mockConnection(mockMultiaddrConnection(duplexStream, otherPeerId))
     })
 
-    return await defer.promise
+    await defer.promise
   })
 })

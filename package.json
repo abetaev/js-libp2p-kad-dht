@@ -127,8 +127,12 @@
     "lint": "aegir lint",
     "build": "aegir build",
     "generate": "protons ./src/message/dht.proto",
-    "test": "aegir test -t node",
-    "test:node": "aegir test -t node",
+    "test": "aegir test",
+    "test:node": "aegir test -t node -f './dist/test/**/*.{node,spec}.js' --cov",
+    "test:chrome": "aegir test -t browser -f './dist/test/**/*.spec.js' --cov",
+    "test:chrome-webworker": "aegir test -t webworker -f './dist/test/**/*.spec.js'",
+    "test:firefox": "aegir test -t browser -f './dist/test/**/*.spec.js' -- --browser firefox",
+    "test:firefox-webworker": "aegir test -t webworker -f './dist/test/**/*.spec.js' -- --browser firefox",
     "dep-check": "aegir dep-check",
     "release": "aegir release"
   },
@@ -185,7 +189,7 @@
     "@types/lodash.range": "^3.2.6",
     "@types/varint": "^6.0.0",
     "@types/which": "^2.0.1",
-    "aegir": "^37.0.8",
+    "aegir": "^37.3.0",
     "datastore-level": "^8.0.0",
     "delay": "^5.0.0",
     "execa": "^6.0.0",
@@ -201,6 +205,7 @@
     "which": "^2.0.2"
   },
   "browser": {
-    "./dist/src/routing-table/generated-prefix-list.js": "./dist/src/routing-table/generated-prefix-list-browser.js"
+    "./dist/src/routing-table/generated-prefix-list.js": "./dist/src/routing-table/generated-prefix-list-browser.js",
+    "node:events": false
   }
 }

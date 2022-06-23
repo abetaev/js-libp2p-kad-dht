@@ -1,4 +1,4 @@
-import { setMaxListeners } from 'events'
+import { setMaxListeners } from './utils.js'
 import take from 'it-take'
 import length from 'it-length'
 import { QUERY_SELF_INTERVAL, QUERY_SELF_TIMEOUT, K } from './constants.js'

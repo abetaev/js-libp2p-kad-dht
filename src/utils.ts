@@ -9,6 +9,7 @@ import type { PeerInfo } from '@libp2p/interface-peer-info'
 import { peerIdFromBytes } from '@libp2p/peer-id'
 import type { PeerId } from '@libp2p/interface-peer-id'
 import { RECORD_KEY_PREFIX } from './constants.js'
+import events from 'node:events'
 
 // const IPNS_PREFIX = uint8ArrayFromString('/ipns/')
 const PK_PREFIX = uint8ArrayFromString('/pk/')
@@ -111,4 +112,13 @@ export function createPutRecord (key: Uint8Array, value: Uint8Array) {
   const rec = new Libp2pRecord(key, value, timeReceived)
 
   return rec.serialize()
+}
+
+export function setMaxListeners (n: number, ...targets: EventTarget[]) {
+  try {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (events.setMaxListeners) {
+      events.setMaxListeners(n, ...targets)
+    }
+  } catch {}
 }

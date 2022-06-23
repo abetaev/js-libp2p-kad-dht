@@ -6,7 +6,7 @@ import {
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import { queryPath } from './query-path.js'
 import merge from 'it-merge'
-import { setMaxListeners } from 'events'
+import { setMaxListeners } from '../utils.js'
 import { EventEmitter, CustomEvent } from '@libp2p/interfaces/events'
 import { logger } from '@libp2p/logger'
 import type { PeerId } from '@libp2p/interface-peer-id'
