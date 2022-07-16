@@ -71,7 +71,7 @@ export class RoutingTableRefresh implements Initializable {
    * that is close to the requested peer ID and query that, then network
    * peers will tell us who they know who is close to the fake ID
    */
-  refreshTable (force: boolean = false) {
+  async refreshTable (force: boolean = false) {
     this.log('refreshing routing table')
 
     const prefixLength = this._maxCommonPrefix()
@@ -95,7 +95,7 @@ export class RoutingTableRefresh implements Initializable {
      *
      * https://github.com/libp2p/go-libp2p-kad-dht/commit/2851c88acb0a3f86bcfe3cfd0f4604a03db801d8#diff-ad45f4ba97ffbc4083c2eb87a4420c1157057b233f048030d67c6b551855ccf6R219
      */
-    Promise.all(
+    await Promise.all(
       refreshCpls.map(async (lastRefresh, index) => {
         try {
           await this._refreshCommonPrefixLength(index, lastRefresh, force)
